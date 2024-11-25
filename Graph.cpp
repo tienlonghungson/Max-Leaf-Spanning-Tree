@@ -11,6 +11,8 @@ class Graph{
             list = vector<vector<int>>(n);
         }
 
+        Graph() {}
+
         void addEdge(int u, int v){
             list[u].push_back(v);
             list[v].push_back(u);
