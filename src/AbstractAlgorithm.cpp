@@ -1,4 +1,3 @@
-#include<bits/stdc++.h>
 #include"Graph.cpp"
 
 class AbstractAlgorithm{

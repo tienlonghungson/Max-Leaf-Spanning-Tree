@@ -1,5 +1,4 @@
-#include<bits/stdc++.h>
-#include"DegreeProbAlgorithm.cpp"
+#include "algorithms/DegreeProbAlgorithm.cpp"
 
 using namespace std;
 

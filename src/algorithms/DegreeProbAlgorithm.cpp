@@ -1,4 +1,7 @@
-#include"AbstractAlgorithm.cpp"
+#include <iostream>
+#include"../AbstractAlgorithm.cpp"
+
+using namespace std;
 
 class DegreeProbAlgorithm : public AbstractAlgorithm{
     public:
@@ -8,6 +11,6 @@ class DegreeProbAlgorithm : public AbstractAlgorithm{
         }
 
         void execute(){
-            cout << "Executing...\n";
+            std::cout << "Executing...\n";
         }
 };

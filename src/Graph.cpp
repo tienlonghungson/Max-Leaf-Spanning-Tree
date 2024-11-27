@@ -1,14 +1,14 @@
-#include<bits/stdc++.h>
+#include <vector>
 using namespace std;
 
 class Graph{
     private:
         int n;
-        vector<vector<int>> list;
+        vector<vector<int> > list;
     public:
         Graph(int N){
             n = N;
-            list = vector<vector<int>>(n);
+            list = vector<vector<int> >(n);
         }
 
         Graph() {}
