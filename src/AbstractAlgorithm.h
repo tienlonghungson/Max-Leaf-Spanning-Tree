@@ -1,8 +1,10 @@
-#include<bits/stdc++.h>
-#include"Graph.cpp"
+#ifndef ABSTRACTALGORITHM_H
+#define ABSTRACTALGORITHM_H
+
+#include "Graph.h"
 
 class AbstractAlgorithm{
-    private:
+    protected:
         Graph graph;
     public:
         AbstractAlgorithm(Graph g){
@@ -11,5 +13,7 @@ class AbstractAlgorithm{
 
         virtual void initiate(Graph spanningTree) = 0;
 
-        virtual void execute() = 0;
+        virtual Graph* execute() = 0;
 };
+
+#endif // !ABSTRACTALGORITHM_H
