@@ -19,7 +19,7 @@ def compile_cpp(src_dir="src", output_dir="bin", executable_name="main"):
     
     # Construct the g++ command
     output_file = os.path.join(output_dir, executable_name)
-    command = ["g++", "-o", output_file] + cpp_files
+    command = ["g++", "-std=c++20" ,"-o", output_file] + cpp_files
 
     try:
         # Execute the g++ command

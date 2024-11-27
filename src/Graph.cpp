@@ -1,24 +1,22 @@
+#include "Graph.h"
 #include <vector>
 using namespace std;
 
-class Graph{
-    private:
-        int n;
-        vector<vector<int> > list;
-    public:
-        Graph(int N){
-            n = N;
-            list = vector<vector<int> >(n);
-        }
+Graph::Graph(int N): n(N){
+    list = vector<vector<int> >(n);
+}
 
-        Graph() {}
+Graph::Graph() {}
 
-        void addEdge(int u, int v){
-            list[u].push_back(v);
-            list[v].push_back(u);
-        }
+void Graph::addEdge(int u, int v){
+    list[u].push_back(v);
+    list[v].push_back(u);
+}
 
-        int size(){
-            return n;
-        }
-};
+int Graph::size(){
+    return n;
+}
+
+const vector<vector<int> >& Graph::getAdjacentList() {
+    return list;
+}

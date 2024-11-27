@@ -1,4 +1,7 @@
 #include "algorithms/DegreeProbAlgorithm.cpp"
+#include "algorithms/GreedyVertexAlgorithm.cpp"
+#include "SpanningTree.h"
+#include <vector>
 
 using namespace std;
 
@@ -14,8 +17,21 @@ int main(){
     g.addEdge(2, 3);
 
 
-    AbstractAlgorithm* algorithm = new DegreeProbAlgorithm(g);
+    AbstractAlgorithm* algorithm = new GreedyVertexAlgorithm(g);
 
-    algorithm->execute();
+    SpanningTree* sp = (SpanningTree*)algorithm->execute();
+
+    // print the SpanningTree
+    vector<vector<int> > edges = sp->getAdjacentList();
+    int i=0;
+    for (vector<int> neigh: edges){
+        cout<<"Neighbors of "<<i<<" are: ";
+        for (int v: neigh){
+            cout<<v<<", ";
+        }
+        cout<<"\n";
+        i++;
+    }
+
     return 0;
 }

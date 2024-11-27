@@ -18,7 +18,7 @@ if [ -z "$CPP_FILES" ]; then
 fi
 
 # Compile the .cpp files into the executable
-g++ -o "$OUTPUT_FILE" $CPP_FILES
+g++ -std=c++20 -o "$OUTPUT_FILE" $CPP_FILES
 
 # Check if the compilation succeeded
 if [ $? -eq 0 ]; then

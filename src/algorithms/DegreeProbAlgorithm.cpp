@@ -1,5 +1,5 @@
 #include <iostream>
-#include"../AbstractAlgorithm.cpp"
+#include"../AbstractAlgorithm.h"
 
 using namespace std;
 
@@ -10,7 +10,8 @@ class DegreeProbAlgorithm : public AbstractAlgorithm{
         void initiate(Graph st){
         }
 
-        void execute(){
+        Graph* execute(){
             std::cout << "Executing...\n";
+            return NULL;
         }
 };
