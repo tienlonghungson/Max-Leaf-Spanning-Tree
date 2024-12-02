@@ -2,7 +2,7 @@
 
 # Directories
 SRC_DIR="src"
-BIN_DIR="bin"
+BIN_DIR="src/bin"
 OUTPUT_FILE="$BIN_DIR/main"
 
 # Create bin directory if it doesn't exist

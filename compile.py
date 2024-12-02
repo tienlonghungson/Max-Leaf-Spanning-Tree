@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-def compile_cpp(src_dir="src", output_dir="bin", executable_name="main"):
+def compile_cpp(src_dir="src", output_dir="src/bin", executable_name="main"):
     # Create the output directory if it doesn't exist
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
