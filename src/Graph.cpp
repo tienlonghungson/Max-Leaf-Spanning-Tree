@@ -1,9 +1,16 @@
 #include "Graph.h"
 #include <vector>
+#include <algorithm>
+#include <stdio.h>
 using namespace std;
 
 Graph::Graph(int N): n(N){
     adjacentList = vector<vector<int> >(n);
+}
+
+Graph::Graph(const Graph& g){
+    n = g.n;
+    adjacentList = g.adjacentList;
 }
 
 Graph::Graph() {}
@@ -11,6 +18,11 @@ Graph::Graph() {}
 void Graph::addEdge(int u, int v){
     adjacentList[u].push_back(v);
     adjacentList[v].push_back(u);
+}
+
+void Graph::removeEdgeSorted(int u, int v){
+    adjacentList[u].erase(find(adjacentList[u].begin(), adjacentList[u].end(), v));
+    adjacentList[v].erase(find(adjacentList[v].begin(), adjacentList[v].end(), u));
 }
 
 int Graph::size(){

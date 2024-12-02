@@ -11,9 +11,13 @@ class Graph{
     public:
         Graph(int N);
 
+        Graph(const Graph& g);
+
         Graph();
 
         void addEdge(int u, int v);
+
+        void removeEdgeSorted(int u, int v);
 
         int size();
 
