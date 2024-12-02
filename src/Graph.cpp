@@ -4,7 +4,7 @@
 using namespace std;
 
 Graph::Graph(int N): n(N){
-    list = vector<vector<int> >(n);
+    adjacentList = vector<vector<int> >(n);
 }
 
 Graph::Graph(const Graph& g){
@@ -15,8 +15,8 @@ Graph::Graph(const Graph& g){
 Graph::Graph() {}
 
 void Graph::addEdge(int u, int v){
-    list[u].push_back(v);
-    list[v].push_back(u);
+    adjacentList[u].push_back(v);
+    adjacentList[v].push_back(u);
 }
 
 void Graph::removeEdge(int u, int v){
@@ -29,5 +29,25 @@ int Graph::size(){
 }
 
 const vector<vector<int> >& Graph::getAdjacentList() {
-    return list;
+    return adjacentList;
+}
+
+void Graph::printGraph(){
+    printGraph(this->n, this->adjacentList);
+}
+
+void Graph::printGraph(Graph g){
+    int n = g.size();
+    vector<vector<int> > adjacentList = g.getAdjacentList();
+    printGraph(n,adjacentList);
+}
+
+void Graph::printGraph(int n, const vector<vector<int> >& adjacentList){
+    for (int i=0;i<n;++i){
+        for (int v : adjacentList[i]) {
+            if (v>i) {
+            printf("%d %d\n",i,v);
+            }
+        }
+    }
 }
