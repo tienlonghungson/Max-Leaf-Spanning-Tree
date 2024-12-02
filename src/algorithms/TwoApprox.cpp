@@ -75,6 +75,11 @@ public:
         printf("Start 2\n");
 
         T.push_back(v);
+        for (int w : unSpannedNeighbor[v]) {
+            printf("Remove %d from neighbor list of %d\n",v, w);
+            unSpannedNeighbor[w].erase(lIter[w][v]);
+        }
+        
         expand(v);
 
         printf("create neighborOutsideT\n");
