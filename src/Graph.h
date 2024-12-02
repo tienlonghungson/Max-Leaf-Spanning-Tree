@@ -17,7 +17,7 @@ class Graph{
 
         void addEdge(int u, int v);
 
-        void removeEdge(int u, int v);
+        void removeEdgeSorted(int u, int v);
 
         int size();
 

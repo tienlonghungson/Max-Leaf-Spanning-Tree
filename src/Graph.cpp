@@ -1,6 +1,7 @@
 #include "Graph.h"
 #include <vector>
 #include <algorithm>
+#include <stdio.h>
 using namespace std;
 
 Graph::Graph(int N): n(N){
@@ -9,7 +10,7 @@ Graph::Graph(int N): n(N){
 
 Graph::Graph(const Graph& g){
     n = g.n;
-    list = g.list;
+    adjacentList = g.adjacentList;
 }
 
 Graph::Graph() {}
@@ -19,9 +20,9 @@ void Graph::addEdge(int u, int v){
     adjacentList[v].push_back(u);
 }
 
-void Graph::removeEdge(int u, int v){
-    list[u].erase(find(list[u].begin(), list[u].end(), v));
-    list[v].erase(find(list[v].begin(), list[v].end(), u));
+void Graph::removeEdgeSorted(int u, int v){
+    adjacentList[u].erase(find(adjacentList[u].begin(), adjacentList[u].end(), v));
+    adjacentList[v].erase(find(adjacentList[v].begin(), adjacentList[v].end(), u));
 }
 
 int Graph::size(){

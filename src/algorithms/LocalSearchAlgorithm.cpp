@@ -63,7 +63,7 @@ class LocalSearchAlgorithm : public AbstractAlgorithm{
                     increased = true;
 
                     spanningTree.addEdge(u, v);
-                    spanningTree.removeEdge(path[i], path[i+1]);
+                    spanningTree.removeEdgeSorted(path[i], path[i+1]);
                     break;
                 }
             }
