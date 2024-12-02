@@ -5,7 +5,7 @@
 using namespace std;
 
 const int IS_LEAF = 0;
-const int IS_IN_TREE = 1;
+const int IS_INNER = 1;
 const int NOT_VISITED = 2;
 
 class GreedyVertexAlgorithm : public AbstractAlgorithm{
@@ -37,10 +37,17 @@ public:
         vector<int> status(n,NOT_VISITED);
 
         for (int v: adjacentList[nextVer]){
-            deg[v]--;
             status[v] = IS_LEAF;
             sp->addEdge(nextVer,v);
+
+            for (int w : adjacentList[v]) {
+                if (status[w] != NOT_VISITED) {
+                    deg[w]--;
+                    deg[v]--;
+                }
+            }
         }
+
 
         while (curN<n) {
             max_deg = -1;
@@ -53,14 +60,20 @@ public:
                 }
             }
 
-            status[nextVer] = IS_IN_TREE;
+            status[nextVer] = IS_INNER;
             for (int v : adjacentList[nextVer]) {
                 if (status[v] == NOT_VISITED) {
                     status[v] = IS_LEAF;
                     sp->addEdge(nextVer, v);
                     curN ++;
+
+                    for (int w : adjacentList[v]) {
+                        if (status[w] != NOT_VISITED) {
+                            deg[w]--;
+                            deg[v]--;
+                        }
+                    }
                 }
-                deg[v]--;
             }
 
         }
