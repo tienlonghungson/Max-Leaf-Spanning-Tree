@@ -1,55 +1,42 @@
 #include "AbstractAlgorithm.h"
 #include "algorithms/DegreeProbAlgorithm.cpp"
 #include "algorithms/GreedyVertexAlgorithm.cpp"
+#include "algorithms/LocalSearchAlgorithm.cpp"
 #include "algorithms/TwoApprox.cpp"
+#include "algorithms/BfsAlgorithm.cpp"
 #include "SpanningTree.h"
 #include <vector>
 
 using namespace std;
 
 int main(){
-    Graph g(5);
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(0, 3);
-    g.addEdge(0, 4);
-    g.addEdge(1, 2);
-    g.addEdge(1, 3);
-    g.addEdge(1, 4);
-    g.addEdge(2, 3);
+    freopen("input.txt","r",stdin);
 
+    int n, m;
+    cin >> n >> m;
 
-    AbstractAlgorithm* algorithm = new GreedyVertexAlgorithm(g);
-    AbstractAlgorithm* twoApprox = new TwoApprox(g);
+    Graph g(n);
 
-    SpanningTree* sp = (SpanningTree*)algorithm->execute();
-
-    // print the SpanningTree of GreedyVertexAlgorithm
-    vector<vector<int> > edges = sp->getAdjacentList();
-    int i=0;
-    for (vector<int> neigh: edges){
-        cout<<"Neighbors of "<<i<<" are: ";
-        for (int v: neigh){
-            cout<<v<<", ";
-        }
-        cout<<"\n";
-        i++;
+    for(int i = 0; i < m; i++){
+        int u, v;
+        cin >> u >> v;
+        g.addEdge(u, v);
     }
 
-    cout<<"Result of TwoApprox\n";
-    sp = (SpanningTree*) twoApprox->execute();
+    AbstractAlgorithm* algorithm = new BfsAlgorithm(g);
 
-    // print the SpanningTree of TwoApprox
-    edges = sp->getAdjacentList();
-    i=0;
-    for (vector<int> neigh: edges){
-        cout<<"Neighbors of "<<i<<" are: ";
-        for (int v: neigh){
-            cout<<v<<", ";
-        }
-        cout<<"\n";
-        i++;
-    }
+    SpanningTree * bfsTree = (SpanningTree *)algorithm->execute();
+
+    cout << "Is tree?" << bfsTree->verify(g) << "\n";
+    cout << "Leaves Count" << bfsTree->getLeavesCount() << "\n";
+
+    AbstractAlgorithm* localSearch = new LocalSearchAlgorithm(g);
+    localSearch->initiate(*bfsTree);
+
+    SpanningTree * output = (SpanningTree *)localSearch->execute();
+
+    cout << "Is tree?" << output->verify(g) << "\n";
+    cout << "Leaves Count" << output->getLeavesCount() << "\n";
 
     return 0;
 }

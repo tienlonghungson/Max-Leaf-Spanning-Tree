@@ -23,7 +23,7 @@ class Graph{
 
         const vector<vector<int> >& getAdjacentList();
 
-        void printGraph();
+        void virtual printGraph();
 
         void printGraph(Graph g);
 
