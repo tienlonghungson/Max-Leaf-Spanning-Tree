@@ -47,7 +47,7 @@ void Graph::printGraph(int n, const vector<vector<int> >& adjacentList){
     for (int i=0;i<n;++i){
         for (int v : adjacentList[i]) {
             if (v>i) {
-            printf("%d %d\n",i,v);
+                printf("%d %d\n",i,v);
             }
         }
     }
