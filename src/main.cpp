@@ -1,6 +1,5 @@
 #include "AbstractAlgorithm.h"
 #include "Graph.h"
-#include "algorithms/DegreeProbAlgorithm.cpp"
 #include "algorithms/GreedyVertexAlgorithm.cpp"
 #include "algorithms/LocalSearchAlgorithm.cpp"
 #include "algorithms/TwoApprox.cpp"
@@ -8,19 +7,18 @@
 #include "SpanningTree.h"
 #include <cstdio>
 #include <cstring>
-#include <vector>
 
 using namespace std;
 
 int main(){
-//     int n, m, a, b;
-
-//     scanf("%d %d",&n, &m);
-//     Graph g(n);
-//     for (int i=0;i<m;++i){
-//         scanf("%d %d", &a, &b);
-//         g.addEdge(a,b);
-//     }
+    // int n, m, a, b;
+    //
+    // scanf("%d %d",&n, &m);
+    // Graph g(n);
+    // for (int i=0;i<m;++i){
+    //     scanf("%d %d", &a, &b);
+    //     g.addEdge(a,b);
+    // }
 
     freopen("input.txt","r",stdin);
 
@@ -35,23 +33,87 @@ int main(){
         g.addEdge(u, v);
     }
 
-    AbstractAlgorithm* algorithm = new BfsAlgorithm(g);
+    AbstractAlgorithm* bfs = new BfsAlgorithm(g);
     AbstractAlgorithm* greedyAlg = new GreedyVertexAlgorithm(g);
     AbstractAlgorithm* twoApprox = new TwoApprox(g);
     AbstractAlgorithm* localSearch = new LocalSearchAlgorithm(g);
 
-    SpanningTree * bfsTree = (SpanningTree *)algorithm->execute();
+    SpanningTree * answer;
+    int leavesOfAnswer = -1;
+    int leavesOfTmpAnswer;
 
-    cout << "Is tree?" << bfsTree->verify(g) << "\n";
-    cout << "Leaves Count" << bfsTree->getLeavesCount() << "\n";
 
-    AbstractAlgorithm* localSearch = new LocalSearchAlgorithm(g);
-    localSearch->initiate(*bfsTree);
+    // BFS 
+    SpanningTree * tmpAnswer = (SpanningTree *)bfs->execute();
+    answer = tmpAnswer;
+    leavesOfTmpAnswer = tmpAnswer->getLeavesCount();
+    leavesOfAnswer = leavesOfTmpAnswer;
 
-    SpanningTree * output = (SpanningTree *)localSearch->execute();
+    cout<<"Solution of BFS\n";
+    tmpAnswer->printGraph();
 
-    cout << "Is tree?" << output->verify(g) << "\n";
-    cout << "Leaves Count" << output->getLeavesCount() << "\n";
+    cout << "Is tree?" << tmpAnswer->verify(g) << "\n";
+    cout << "Leaves Count" << leavesOfTmpAnswer << "\n";
+
+    localSearch->initiate(*tmpAnswer);
+    tmpAnswer = (SpanningTree *)localSearch->execute();
+    leavesOfTmpAnswer = tmpAnswer->getLeavesCount();
+
+    cout<<"Solution of localSearch\n";
+    tmpAnswer->printGraph();
+
+    cout << "Is tree?" << tmpAnswer->verify(g) << "\n";
+    cout << "Leaves Count" << leavesOfTmpAnswer << "\n";
+
+    if (leavesOfAnswer<leavesOfTmpAnswer) {
+        answer = tmpAnswer;
+        leavesOfAnswer = leavesOfTmpAnswer;
+    }
+
+    // GreedyVertexAlgorithm
+    tmpAnswer = (SpanningTree*) greedyAlg->execute();
+    cout<<"Solution of Greedy\n";
+    tmpAnswer->printGraph();
+
+    localSearch->initiate(*tmpAnswer);
+    tmpAnswer = (SpanningTree*) localSearch->execute();
+    leavesOfTmpAnswer = tmpAnswer->getLeavesCount();
+
+    cout<<"Solution of localSearch\n";
+    tmpAnswer->printGraph();
+
+    cout << "Is tree?" << tmpAnswer->verify(g) << "\n";
+    cout << "Leaves Count" << leavesOfTmpAnswer << "\n";
+
+    if (leavesOfAnswer<leavesOfTmpAnswer) {
+        answer = tmpAnswer;
+        leavesOfAnswer = leavesOfTmpAnswer;
+    }
+
+    // TwoApprox
+    tmpAnswer = (SpanningTree*) twoApprox->execute();
+
+    cout<<"Solution of TwoApprox\n";
+    tmpAnswer->printGraph();
+
+    localSearch->initiate(*tmpAnswer);
+    tmpAnswer = (SpanningTree*) localSearch->execute();
+    leavesOfTmpAnswer = tmpAnswer->getLeavesCount();
+
+    cout<<"Solution of localSearch\n";
+    tmpAnswer->printGraph();
+
+    cout << "Is tree?" << tmpAnswer->verify(g) << "\n";
+    cout << "Leaves Count" << leavesOfTmpAnswer << "\n";
+
+    if (leavesOfAnswer<leavesOfTmpAnswer) {
+        answer = tmpAnswer;
+        leavesOfAnswer = leavesOfTmpAnswer;
+    }
+
+    cout<<"Answer\n";
+    cout<<"leavesOfAnswer = "<<leavesOfAnswer<<"\n";
+    answer->printGraph();
 
     return 0;
 }
