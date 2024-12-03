@@ -11,9 +11,10 @@ public:
 
     // verify if this graph is a tree of g
     bool verify(Graph g);
+  
+    void printGraph();
 
-    // count the number of leaves
-    int countLeaves();
+    int getLeavesCount();
 };
 
 #endif // !SPANNINGTREE_H
