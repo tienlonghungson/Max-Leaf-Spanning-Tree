@@ -1,8 +1,11 @@
 #include "SpanningTree.h"
 #include "Graph.h"
+
+#include <vector>
 #include <algorithm>
 #include <iostream>
 #include <queue>
+
 
 using namespace std;
 

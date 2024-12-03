@@ -1,15 +1,27 @@
 #include "AbstractAlgorithm.h"
+#include "Graph.h"
 #include "algorithms/DegreeProbAlgorithm.cpp"
 #include "algorithms/GreedyVertexAlgorithm.cpp"
 #include "algorithms/LocalSearchAlgorithm.cpp"
 #include "algorithms/TwoApprox.cpp"
 #include "algorithms/BfsAlgorithm.cpp"
 #include "SpanningTree.h"
+#include <cstdio>
+#include <cstring>
 #include <vector>
 
 using namespace std;
 
 int main(){
+//     int n, m, a, b;
+
+//     scanf("%d %d",&n, &m);
+//     Graph g(n);
+//     for (int i=0;i<m;++i){
+//         scanf("%d %d", &a, &b);
+//         g.addEdge(a,b);
+//     }
+
     freopen("input.txt","r",stdin);
 
     int n, m;
@@ -24,6 +36,9 @@ int main(){
     }
 
     AbstractAlgorithm* algorithm = new BfsAlgorithm(g);
+    AbstractAlgorithm* greedyAlg = new GreedyVertexAlgorithm(g);
+    AbstractAlgorithm* twoApprox = new TwoApprox(g);
+    AbstractAlgorithm* localSearch = new LocalSearchAlgorithm(g);
 
     SpanningTree * bfsTree = (SpanningTree *)algorithm->execute();
 
@@ -40,3 +55,4 @@ int main(){
 
     return 0;
 }
+

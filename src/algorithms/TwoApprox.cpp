@@ -19,14 +19,17 @@ private:
     list<int> unSpannedNeighbor[100];
     map<int, list<int>::iterator > lIter[100];
 
+    vector<vector<int> > adjacentList;
+
     void expand(int u){
+        printf("Expanding at %d\n",u);
         for (int v : unSpannedNeighbor[u]) {
             printf("Iterate at %d, neighbor of %d\n",v,u);
             W2.push_back(v);
             T.push_back(v);
             edges.push_back({u,v});
 
-            for (int w : unSpannedNeighbor[v]) {
+            for (int w : adjacentList[v]) {
                 if (w!=u){
                     printf("Remove %d from neighbor list of %d\n",v, w);
                     unSpannedNeighbor[w].erase(lIter[w][v]);
@@ -56,7 +59,7 @@ public:
 
     Graph* execute(){
         int n = graph.size();
-        vector<vector<int> > adjacentList = graph.getAdjacentList();
+        adjacentList = graph.getAdjacentList();
         createUandLIter(n, adjacentList);
         
         printf("Start 1\n");
@@ -75,6 +78,11 @@ public:
         printf("Start 2\n");
 
         T.push_back(v);
+        for (int w : unSpannedNeighbor[v]) {
+            printf("Remove %d from neighbor list of %d\n",v, w);
+            unSpannedNeighbor[w].erase(lIter[w][v]);
+        }
+        
         expand(v);
 
         printf("create neighborOutsideT\n");
