@@ -4,6 +4,8 @@
 #include "../SpanningTree.h"
 
 using namespace std;
+#ifndef LOCALSEARCHALGORITHM_H
+#define LOCALSEARCHALGORITHM_H
 
 class LocalSearchAlgorithm : public AbstractAlgorithm{
     private:
@@ -130,3 +132,6 @@ class LocalSearchAlgorithm : public AbstractAlgorithm{
             return new SpanningTree(spanningTree);
         }
 };
+
+
+#endif
