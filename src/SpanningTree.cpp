@@ -1,6 +1,7 @@
 #include "SpanningTree.h"
 #include "Graph.h"
 #include <algorithm>
+#include <iostream>
 #include <queue>
 
 using namespace std;
@@ -10,6 +11,22 @@ SpanningTree::SpanningTree(int N): Graph(N){}
 SpanningTree::SpanningTree(const Graph& g): Graph(g){}
 
 SpanningTree::SpanningTree(): Graph(){}
+
+void SpanningTree::printGraph(){
+    cout << "Leaves count = " << getLeavesCount() << "\n";
+
+    Graph::printGraph();
+}
+
+int SpanningTree::getLeavesCount(){
+    int leavesCount = 0;
+    auto list = getAdjacentList();
+    for(int i = 0; i < size(); i++){
+        leavesCount += list[i].size() == 1;
+    }
+
+    return leavesCount;
+}
 
 bool SpanningTree::verify(Graph g){
     int degrees = 0;
