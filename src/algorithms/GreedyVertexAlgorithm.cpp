@@ -35,6 +35,7 @@ public:
         Graph*  sp = new SpanningTree(n);
         int curN = 1 + adjacentList[nextVer].size();
         vector<int> status(n,NOT_VISITED);
+        status[nextVer] = IS_INNER;
 
         for (int v: adjacentList[nextVer]){
             status[v] = IS_LEAF;
