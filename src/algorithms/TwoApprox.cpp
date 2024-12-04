@@ -22,25 +22,25 @@ private:
     vector<vector<int> > adjacentList;
 
     void expand(int u){
-        printf("Expanding at %d\n",u);
+        // printf("Expanding at %d\n",u);
         for (int v : unSpannedNeighbor[u]) {
-            printf("Iterate at %d, neighbor of %d\n",v,u);
+            // printf("Iterate at %d, neighbor of %d\n",v,u);
             W2.push_back(v);
             T.push_back(v);
             edges.push_back({u,v});
 
             for (int w : adjacentList[v]) {
                 if (w!=u){
-                    printf("Remove %d from neighbor list of %d\n",v, w);
+                    // printf("Remove %d from neighbor list of %d\n",v, w);
                     unSpannedNeighbor[w].erase(lIter[w][v]);
                 }
             }
-            printf("Remove Done for %d\n",v);
+            // printf("Remove Done for %d\n",v);
         }
         for (auto it = unSpannedNeighbor[u].begin();it != unSpannedNeighbor[u].end();){
             it = unSpannedNeighbor[u].erase(it);
         }
-        printf("Remove Done\n");
+        // printf("Remove Done\n");
     }
 
     void createUandLIter(int n, const vector<vector<int> >& adjacentList){
@@ -62,7 +62,7 @@ public:
         adjacentList = graph.getAdjacentList();
         createUandLIter(n, adjacentList);
         
-        printf("Start 1\n");
+        // printf("Start 1\n");
 
         // find a vertex with maximum degree
         int max_deg = adjacentList[0].size();
@@ -75,21 +75,21 @@ public:
             }
         }
 
-        printf("Start 2\n");
+        // printf("Start 2\n");
 
         T.push_back(v);
         for (int w : unSpannedNeighbor[v]) {
-            printf("Remove %d from neighbor list of %d\n",v, w);
+            // printf("Remove %d from neighbor list of %d\n",v, w);
             unSpannedNeighbor[w].erase(lIter[w][v]);
         }
         
         expand(v);
 
-        printf("create neighborOutsideT\n");
+        // printf("create neighborOutsideT\n");
         int neighborOutsideT;
-        printf("create neighborOutsideT\n");
+        // printf("create neighborOutsideT\n");
 
-        printf("Start 3\n");
+        // printf("Start 3\n");
         while (T.size()<n) {
             if (!W2.empty()) {
                 v = W2.front();
