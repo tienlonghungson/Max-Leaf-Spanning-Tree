@@ -11,26 +11,13 @@
 using namespace std;
 
 int main(){
-    // int n, m, a, b;
-    //
-    // scanf("%d %d",&n, &m);
-    // Graph g(n);
-    // for (int i=0;i<m;++i){
-    //     scanf("%d %d", &a, &b);
-    //     g.addEdge(a,b);
-    // }
+    int n, m, a, b;
 
-    freopen("input.txt","r",stdin);
-
-    int n, m;
-    cin >> n >> m;
-
+    scanf("%d %d",&n, &m);
     Graph g(n);
-
-    for(int i = 0; i < m; i++){
-        int u, v;
-        cin >> u >> v;
-        g.addEdge(u, v);
+    for (int i=0;i<m;++i){
+        scanf("%d %d", &a, &b);
+        g.addEdge(a,b);
     }
 
     AbstractAlgorithm* bfs = new BfsAlgorithm(g);
