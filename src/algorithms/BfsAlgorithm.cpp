@@ -38,13 +38,19 @@ public:
             int u = q.front();
             q.pop();
 
+            vector<pair<int, int>> vertices;
+
             for(auto v : list[u]){
                 if (!visited[v]){
                     st->addEdge(u, v);
                     visited[v] = true;
-
-                    q.push(v);
+                    vertices.push_back({list[v].size(), v});
                 }
+            }
+
+            sort(vertices.begin(), vertices.end());
+            for(int i = (int)vertices.size() - 1; i >= 0; i--){
+                q.push(vertices[i].second);
             }
         }
 
