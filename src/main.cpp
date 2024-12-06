@@ -4,6 +4,7 @@
 #include "algorithms/TwoApprox.cpp"
 #include "algorithms/BfsAlgorithm.cpp"
 #include "SpanningTree.h"
+#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -102,13 +103,19 @@ void solve(){
 }
 
 int main(){
-    freopen("hard.in","r",stdin);
-    freopen("hard.out","w",stdout);
-    int k;
-    cin >> k;
+    freopen("InputOutputs/all-hard.in","r",stdin);
+    freopen("InputOutputs/all-hard.out","w",stdout);
+    int k=0;
 
-    while(k--){
+    while(1){
         solve();
+
+        k++;
+        cerr<<"Solved instance "<<k<<"\n";
+        
+        if (cin.eof()) {
+            break;
+        }
     }
 
     return 0;
